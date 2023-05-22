@@ -24,7 +24,7 @@ git clone https://github.com/Git-Yousfi-Neji/Network-Scanner.git
 - Navigate to the project directory:
 
 ```
-cd network-scanner
+cd Network-Scanner
 ```
 
 - Compile the project:
@@ -51,7 +51,8 @@ Enter IP range to scan:
 Scanning IP range 192.168.1.1
 
 Port 80 is open
-Port 443 is open... 
+
+Port 443 is open
 
 Scan completed.
 
