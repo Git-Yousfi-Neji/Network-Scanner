@@ -8,19 +8,22 @@
 #include <netdb.h>
 #include "scanner.h"
 
-void performScan(const char* ipRange) {
+void performScan(const char* ipRange, int ipStart, int ipEnd) {
+    printf("in scanner");
     struct sockaddr_in server;
     int sock;
     int port;
     int result;
 
-    for (port = 1; port <= 65535; ++port) {
+    for (port = ipStart; port <= ipEnd; ++port) {
         sock = socket(AF_INET, SOCK_STREAM, 0);
+        printf("in loop");
         if (sock == -1) {
+            printf("get error");
             perror("socket");
             exit(EXIT_FAILURE);
         }
-
+        printf("good");
         server.sin_family = AF_INET;
         server.sin_port = htons(port);
         if (inet_pton(AF_INET, ipRange, &(server.sin_addr)) <= 0) {
