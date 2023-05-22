@@ -1,19 +1,15 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -pedantic -std=c99
+CFLAGS = -Wall -Wextra
+
+SRCDIR = src
+INCDIR = include
 
 TARGET = scanner
-SRCS = main.c scanner.c
-OBJS = $(SRCS:.c=.o)
 
-.PHONY: all clean
+$(TARGET): $(SRCDIR)/main.c $(SRCDIR)/scanner/scanner.c $(SRCDIR)/utils/ip_range.c
+	$(CC) $(CFLAGS) -I$(INCDIR) -o $@ $^
 
-all: $(TARGET)
-
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
+.PHONY: clean
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(TARGET)
+
