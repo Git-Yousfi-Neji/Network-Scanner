@@ -1,3 +1,4 @@
+
 # Network Scanner
 
 This is a simple network scanner implemented in C that allows you to scan a range of IP addresses and check for open ports on each device.
@@ -24,7 +25,7 @@ git clone https://github.com/Git-Yousfi-Neji/Network-Scanner.git
 - Navigate to the project directory:
 
 ```
-cd network-scanner
+cd Network-Scanner
 ```
 
 - Compile the project:
