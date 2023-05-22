@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include "scanner_internal.h"
 
-bool scanPort(unsigned int ipAddress, int port) {
+bool scanPorts(unsigned int ipAddress, int port) {
     // Implement your port scanning logic here
     // You can use system calls, sockets, or any other networking library to perform the port scan
 
@@ -12,3 +12,4 @@ bool scanPort(unsigned int ipAddress, int port) {
 
     return isOpen;
 }
+

@@ -4,6 +4,6 @@
 #include <stdbool.h>
 
 // Function to scan a port on the given IP address
-bool scanPort(unsigned int ipAddress, int port);
+bool scanPorts(unsigned int ipAddress, int port);
 
 #endif /* SCANNER_INTERNAL_H */

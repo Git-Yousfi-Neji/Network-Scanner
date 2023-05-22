@@ -3,6 +3,17 @@
 #include "scanner_internal.h"
 #include "../utils/ip_range.h"
 
+bool scanPorts(unsigned int ipAddress, int port) {
+    // Implement your port scanning logic here
+    // You can use system calls, sockets, or any other networking library to perform the port scan
+
+    // Placeholder code
+    // Simulate a random port being open
+    bool isOpen = (rand() % 2 == 0);
+
+    return isOpen;
+}
+
 void performScan(const char* ipRange, int startPort, int endPort) {
     printf("Performing network scan...\n");
 
@@ -19,7 +30,7 @@ void performScan(const char* ipRange, int startPort, int endPort) {
 
         // Iterate over the ports in the range
         for (int port = startPort; port <= endPort; ++port) {
-            if (scanPort(ip, port)) {
+            if (scanPorts(ip, port)) {
                 printf("Port %d open\n", port);
             }
         }
