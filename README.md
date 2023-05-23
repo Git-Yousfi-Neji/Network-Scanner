@@ -103,6 +103,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 - [ ] Integration with Database: Provide an option to store the scan results in a database for further analysis, historical tracking, or integration with other tools.
 
-- [ ] Command-Line Options: Implement command-line options to customize the scanning behavior, such as specifying the timeout duration, enabling verbose output, or choosing scan techniques.
+- [x] Command-Line Options: Implement command-line options to customize the scanning behavior, such as specifying the timeout duration, enabling verbose output, or choosing scan techniques.
 
 - [ ] Host Discovery: Include host discovery techniques to identify live hosts within a given IP range before performing port scanning, reducing unnecessary scanning on inactive hosts.
