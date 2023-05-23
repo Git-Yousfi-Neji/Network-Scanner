@@ -98,7 +98,7 @@ void performScan(const char* ipRange, int startPort, int endPort) {
         struct in_addr addr;
         addr.s_addr = htonl(ip); // Convert IP to network byte order
         char* ipAddress = inet_ntoa(addr);
-        //printf("Scanning IP: %s\n", ipAddress);
+        printf("Scanning IP: %s\n", ipAddress);
         // Iterate over the ports in the range
         for (int port = startPort; port <= endPort; ++port) {
             printf("Trying with port: %d\n", port);
