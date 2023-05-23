@@ -6,10 +6,14 @@
 #include <netinet/in.h>
 #include "scanner.h"
 #include "scanner_internal.h"
+#include "read_config.h"
 #include "../utils/ip_range.h"
 #include <sys/time.h>
 #include <fcntl.h> // Added for non-blocking mode
 #include <errno.h> // Added for error handling
+
+#define VERBOSE_MODE read_config("CONFIG_VERBOSE_MODE")
+#define TIMEOUT_VALUE read_config("CONFIG_TIMEOUT_SEC")
 
 bool scanPort(const char* ipAddress, int port) {
     // Create a socket for the port scan
@@ -34,10 +38,11 @@ bool scanPort(const char* ipAddress, int port) {
 
     if (connectResult < 0) {
         // Check if the connection is still in progress
+        if (VERBOSE_MODE == 2) printf("Connection still in progress with port %d\n",port);
         if (errno == EINPROGRESS) {
             // Define the timeout value for the connection
             struct timeval timeout;
-            timeout.tv_sec = 1;  // 1 second
+            timeout.tv_sec = TIMEOUT_VALUE;  // second
             timeout.tv_usec = 0; // 0 microseconds
 
             // Create a file descriptor set to hold the socket
@@ -50,27 +55,32 @@ bool scanPort(const char* ipAddress, int port) {
 
             if (selectResult > 0) {
                 // The socket is ready for reading, indicating a successful connection
+                if (VERBOSE_MODE == 2) printf("Successful connection, the socket is ready for reading\n");
                 int socketError;
                 socklen_t socketErrorLength = sizeof(socketError);
                 getsockopt(sockfd, SOL_SOCKET, SO_ERROR, &socketError, &socketErrorLength);
 
                 if (socketError == 0) {
                     // Connection successful, port is open
+                    if (VERBOSE_MODE == 2) printf("Connection successful, port %d is open\n", port);
                     close(sockfd);
                     return true;
                 }
             } else if (selectResult == 0) {
                 // The select function timed out, indicating a closed port
+                if (VERBOSE_MODE == 2) printf("Connection timed out with port %d [timeout config is set to %d sec]\n", port, TIMEOUT_VALUE);
                 close(sockfd);
                 return false;
             }
         } else {
             // Connection failed, port is closed
+            if (VERBOSE_MODE == 2) printf("Connection failed, port is closed\n");
             close(sockfd);
             return false;
         }
     } else {
         // Connection successful, port is open
+        if (VERBOSE_MODE == 2) printf("Connection successful, port is open\n");
         close(sockfd);
         return true;
     }
@@ -81,12 +91,12 @@ bool scanPort(const char* ipAddress, int port) {
 }
 
 void performScan(const char* ipRange, int startPort, int endPort) {
-    printf("Performing network scan...\n");
+    if (VERBOSE_MODE == 1 || VERBOSE_MODE == 2) printf("Performing network scan...\n");
 
     // Parse the IP range
     IPAddressRange range;
     if (!parseIPRange(ipRange, &range)) {
-        printf("Invalid IP range: %s\n", ipRange);
+        if (VERBOSE_MODE == 2) printf("Invalid IP range: %s\n", ipRange);
         return;
     }
 
@@ -101,12 +111,12 @@ void performScan(const char* ipRange, int startPort, int endPort) {
         printf("Scanning IP: %s\n", ipAddress);
         // Iterate over the ports in the range
         for (int port = startPort; port <= endPort; ++port) {
-            printf("Trying with port: %d\n", port);
+            if (VERBOSE_MODE == 1) printf("Trying with port: %d\n", port);
             if (scanPort(ipAddress, port)) {
                 printf("Port %d open\n", port);
             }
         }
     }
 
-    printf("Network scan completed.\n");
+    if (VERBOSE_MODE == 1 || VERBOSE_MODE == 2) printf("Network scan completed.\n");
 }

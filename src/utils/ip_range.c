@@ -6,9 +6,6 @@
 #include "ip_range.h"
 #include <arpa/inet.h>
 
-
-
-
 bool parseIPRange(const char* ipRange, IPAddressRange* range) {
     char* rangeCopy = strdup(ipRange);
     char* dashPos = strchr(rangeCopy, '-');
