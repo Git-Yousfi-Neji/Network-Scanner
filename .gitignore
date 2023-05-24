@@ -1,0 +1,8 @@
+# Ignore the scanner executable
+scanner
+
+# Ignore vscode cashed directory
+.vscode/
+
+# Ignore object files
+*.o
