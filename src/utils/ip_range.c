@@ -11,22 +11,31 @@ bool parseIPRange(const char* ipRange, IPAddressRange* range) {
     char* dashPos = strchr(rangeCopy, '-');
 
     if (dashPos == NULL) {
-        free(rangeCopy);
-        return false;
+        // one ip address not range return true
+        if (inet_pton(AF_INET, rangeCopy, &(range->start)) <= 0){
+            free(rangeCopy); 
+            return false;
+        }
+        if (inet_pton(AF_INET, rangeCopy, &(range->end)) <= 0){
+            free(rangeCopy); 
+            return false;
+        }
     }
+    else {
 
-    *dashPos = '\0';
+        *dashPos = '\0';
 
-    if (inet_pton(AF_INET, rangeCopy, &(range->start)) <= 0) {
-        free(rangeCopy);
-        return false;
+        if (inet_pton(AF_INET, rangeCopy, &(range->start)) <= 0) {
+            free(rangeCopy);
+            return false;
+        }
+
+        if (inet_pton(AF_INET, dashPos + 1, &(range->end)) <= 0) {
+            free(rangeCopy);
+            return false;
+        }
+
     }
-
-    if (inet_pton(AF_INET, dashPos + 1, &(range->end)) <= 0) {
-        free(rangeCopy);
-        return false;
-    }
-
     free(rangeCopy);
     return true;
 }

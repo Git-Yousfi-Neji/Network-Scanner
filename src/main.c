@@ -5,7 +5,7 @@ int main() {
     char ipRange[100];
     int startPort, endPort;
 
-    printf("Enter IP range to scan: ");
+    printf("Enter an IP/range(startIP-endIP) to scan: ");
     scanf("%26s", ipRange);
     
     printf("Enter IP Start: ");

@@ -96,7 +96,7 @@ void performScan(const char* ipRange, int startPort, int endPort) {
     // Parse the IP range
     IPAddressRange range;
     if (!parseIPRange(ipRange, &range)) {
-        if (VERBOSE_MODE == 2) printf("Invalid IP range: %s\n", ipRange);
+        if (VERBOSE_MODE == 2) printf("Invalid IP address/range: %s\n", ipRange);
         return;
     }
 
@@ -111,7 +111,7 @@ void performScan(const char* ipRange, int startPort, int endPort) {
         printf("Scanning IP: %s\n", ipAddress);
         // Iterate over the ports in the range
         for (int port = startPort; port <= endPort; ++port) {
-            if (VERBOSE_MODE == 1) printf("Trying with port: %d\n", port);
+            if (VERBOSE_MODE == 1 || VERBOSE_MODE == 2) printf("Trying with port: %d\n", port);
             if (scanPort(ipAddress, port)) {
                 printf("Port %d open\n", port);
             }

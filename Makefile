@@ -2,11 +2,13 @@ CC = gcc
 CFLAGS = -Wall -Wextra
 
 SRCDIR = src
+SRCSCDIR = $(SRCDIR)/scanner
+SRCUTLDIR = $(SRCDIR)/utils
 INCDIR = include
 
 TARGET = scanner
 
-$(TARGET): $(SRCDIR)/main.c $(SRCDIR)/scanner/scanner.c $(SRCDIR)/utils/ip_range.c $(SRCDIR)/scanner/read_config.c | config.cfg
+$(TARGET): $(SRCDIR)/*.c $(SRCSCDIR)/*.c $(SRCUTLDIR)/*.c | config.cfg
 	$(CC) $(CFLAGS) -I$(INCDIR) -o $@ $^
 
 config.cfg:
