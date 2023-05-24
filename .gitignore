@@ -1,0 +1,5 @@
+# Ignore the scanner executable
+scanner
+
+# Ignore object files
+*.o
