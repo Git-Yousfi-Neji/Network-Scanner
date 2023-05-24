@@ -1,8 +1,11 @@
 # Ignore the scanner executable
 scanner
 
+<<<<<<< HEAD
 # Ignore vscode cashed directory
 .vscode/
 
+=======
+>>>>>>> 0b32fcb22f5f9d8824eba97e64beb2e4bab553ac
 # Ignore object files
 *.o
