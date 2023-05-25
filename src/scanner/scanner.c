@@ -8,6 +8,7 @@
 #include "scanner_internal.h"
 #include "read_config.h"
 #include "../utils/ip_range.h"
+#include "port_specific_scanner.h"
 #include <sys/time.h>
 #include <fcntl.h> // Added for non-blocking mode
 #include <errno.h> // Added for error handling
@@ -115,6 +116,8 @@ void performScan(const char* ipRange, int startPort, int endPort) {
             if (scanPort(ipAddress, port)) {
                 printf("Port %d open\n", port);
             }
+            scanUDPPort(ip, port);
+            scanTCPPort(ip, port);
         }
     }
 
