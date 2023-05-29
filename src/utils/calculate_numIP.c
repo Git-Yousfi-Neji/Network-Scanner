@@ -16,16 +16,7 @@ int calculateNumIPs(const char *ipRange) {
             *dash = '\0';
 
             struct in_addr startAddr, endAddr;
-<<<<<<< HEAD
-<<<<<<< HEAD
             if (inet_pton(AF_INET, token, &(startAddr.s_addr)) == 1 && inet_pton(AF_INET, dash + 1, &(endAddr.s_addr)) == 1) {
-=======
-            if (inet_pton(AF_INET, token, &(startAddr.s_addr)) == 1 &&
-                inet_pton(AF_INET, dash + 1, &(endAddr.s_addr)) == 1) {
->>>>>>> d7fa9d90b268d4ba725fc07cf19f53e371ccfed7
-=======
-            if (inet_pton(AF_INET, token, &(startAddr.s_addr)) == 1 && inet_pton(AF_INET, dash + 1, &(endAddr.s_addr)) == 1) {
->>>>>>> d81c2bd9f77defb3a2bc48f124fdd1fdfb843d96
                 uint32_t startIP = ntohl(startAddr.s_addr);
                 uint32_t endIP = ntohl(endAddr.s_addr);
                 numIPs += (endIP - startIP + 1);
