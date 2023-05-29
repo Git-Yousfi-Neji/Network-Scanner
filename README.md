@@ -83,7 +83,7 @@ Contributions to this project are welcome. Feel free to fork the repository, mak
 This project is licensed under the [MIT License](LICENSE).
 ## Several enhancement TODO
 
-- [ ] Multithreading: Implement multithreading to improve the scanning speed by scanning multiple IP addresses or ports concurrently.
+- [x] Multithreading: Implement multithreading to improve the scanning speed by scanning multiple IP addresses or ports concurrently.
 
 - [x] Port Range Configuration: Allow the user to specify a custom port range to scan instead of scanning all ports from 1 to 65535.
 

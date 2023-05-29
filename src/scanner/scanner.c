@@ -45,5 +45,5 @@ void performScan(const char* ipRange, int startPort, int endPort) {
         }
     }
 
-    if (VERBOSE_MODE == 1 || VERBOSE_MODE == 2) printf("Network scan completed.\n");
+    printf("Network scan completed.\n");
 }

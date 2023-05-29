@@ -5,4 +5,4 @@ scanner
 .vscode/
 
 # Ignore object files
-*.o
+scanner/*.o
