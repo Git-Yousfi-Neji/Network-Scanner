@@ -48,31 +48,26 @@ make
 
 ## Example
 ```
-Enter IP range to scan: 192.168.1.1-192.168.1.3
-Enter IP Start: 77
-Enter IP End: 81
+Enter an IP/range(startIP-endIP) to scan: 192.168.1.1
+Enter IP Start: 80
+Enter IP End: 83
 Performing network scan...
 Scanning IP: 192.168.1.1
-Trying with port: 77
-Trying with port: 78
-Trying with port: 79
 Trying with port: 80
-Port 80 open
+UDP Port 80 closed
+TCP Port 80 open
 Trying with port: 81
-Scanning IP: 192.168.1.2
-Trying with port: 77
-Trying with port: 78
-Trying with port: 79
-Trying with port: 80
-Trying with port: 81
-Scanning IP: 192.168.1.3
-Trying with port: 77
-Trying with port: 78
-Trying with port: 79
-Trying with port: 80
-Trying with port: 81
+UDP Port 81 closed
+TCP Port 81 closed
+Trying with port: 82
+UDP Port 82 closed
+TCP Port 82 closed
+Trying with port: 83
+UDP Port 83 closed
+TCP Port 83 closed
 Network scan completed.
 Scan Completed.
+
 ```
 ## Contribution
 
